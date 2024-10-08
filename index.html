@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/png" href="img/vo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyVoyage</title>
+    <link rel="stylesheet" href="index.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e90ff, #ff7f50);
+            color: white;
+            text-align: center;
+            animation: backgroundAnim 10s ease infinite;
+            scroll-behavior: smooth;
+        }
+
+        @keyframes backgroundAnim {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            background-color: #111;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #ff7f50;
+            color: black;
+            border-radius: 5px;
+        }
+
+        h1 {
+            color: #ff7f50;
+            padding: 20px;
+            font-size: 2.5rem;
+            animation: fadeIn 2s;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        h2, p {
+            color: #f0f0f0;
+        }
+
+        a {
+            color: black;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        a:hover {
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            justify-items: center;
+            margin: 30px 0;
+        }
+
+        .grid-item img {
+            border: 3px solid #fff;
+            border-radius: 10px;
+            transition: transform 0.3s;
+            height: 200px;
+            width: 300px;
+        }
+
+        .grid-item img:hover {
+            transform: scale(1.05);
+        }
+
+        button {
+            background-color: #ff7f50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #e66f41;
+        }
+
+        hr {
+            margin: 30px 0;
+            border: 1px solid #fff;
+        }
+
+        footer {
+            background-color: #222;
+            color: #eee;
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        footer a {
+            color: #ff7f50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            color: #fff;
+            font-size: 1.5rem;
+        }
+
+        .social-icons a:hover {
+            color: #ff7f50;
+        }
+
+        /* Loader animation */
+        .loader {
+            border: 8px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 8px solid #ff7f50;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* About Section Styling */
+        .about-section {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 30px;
+            margin: 30px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .about-section h2 {
+            font-size: 2rem;
+            color: #ff7f50;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .about-section h2::after {
+            content: "";
+            display: block;
+            width: 0;
+            height: 3px;
+            background: #ff7f50;
+            transition: width 0.3s;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+
+        .about-section h2:hover::after {
+            width: 100%;
+        }
+
+        .about-section p {
+            color: #ffffff;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body style="background-image: url(img/6999045.jpg);">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="img/vo.png" alt="Bootstrap" height="40px" width="40px">
+            </a>
+            <a class="navbar-brand" href="index.html">MyVoyage</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="add.html" target="_blank">Travel Booking</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Social Media
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="https://www.facebook.com/wassimeo.saadli" target="_blank">Facebook</a></li>
+                            <li><a class="dropdown-item" href="https://www.linkedin.com/in/wassim-s%C3%A2adli-a237a228a/" target="_blank">LinkedIn</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div>
+        <a href="https://esprit.tn/" target="_blank"><img src="img/esprit.png" alt="esprit_logo" height="30%" width="30%"></a>
+    </div>
+    <a href="add.html"><h2>TRAVEL BOOKING</h2></a>
+    <p>Family Trips - Couples Trips - Adventure and Sports Trips</p>
+
+    <!-- Travel Offers Section -->
+   <div class="grid-container">
+    <div class="card" style="width: 18rem;">
+        <img src="img/circus.png" class="card-img-top" alt="Circus">
+        <div class="card-body">
+            <h5 class="card-title">Circus</h5>
+            <p class="card-text" style="color: #111;">
+                Step right up and experience the magic of the circus! Dive into a world of thrilling acrobatics, dazzling performers, and unforgettable moments under the big top.
+            </p>
+        </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+        <img src="img/cabin.png" class="card-img-top" alt="Cabin">
+        <div class="card-body">
+            <h5 class="card-title">Cabin</h5>
+            <p class="card-text" style="color: #111;">
+                Escape to the cozy comfort of a cabin retreat. Enjoy the serene beauty of nature, with rustic charm and a peaceful atmosphere that feels like home away from home.
+            </p>
+        </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+        <img src="img/submarine.png" class="card-img-top" alt="Submarine">
+        <div class="card-body">
+            <h5 class="card-title">Submarine</h5>
+            <p class="card-text" style="color: #111;">
+                Embark on an underwater adventure with the submarine experience. Explore the deep blue sea, encounter mysterious marine life, and dive into a world of discovery beneath the waves.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Enhanced About Section -->
+    <div class="about-section">
+        <h2>About</h2>
+        <p>A travel agency specializing in customized holidays wants to modernize its online booking system. Customers have to contact the agency by phone or email to book their trips, causing delays and inefficiencies. The agency needs an online solution to enable customers to browse offers, personalize their trips, and book autonomously.</p>
+    </div>
+
+    <button type="button" class="btn btn-primary" id="liveToastBtn" style="margin-bottom:30px;">Show toast</button>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="img/vo.png" class="rounded me-2" alt="img" height="30px">
+                <strong class="me-auto">Bootstrap</strong>
+                <small>1 mins ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" style="color: #111;">
+               You can buy online you ticket form our website 
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2024 MyVoyage. All rights reserved.</p>
+        <a href="#">Back to top</a>
+    </footer>
+
+    <script src="index.js"></script>
+    <script>
+        const toastTrigger = document.getElementById('liveToastBtn');
+        const toastLiveExample = document.getElementById('liveToast');
+
+        if (toastTrigger) {
+            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+            toastTrigger.addEventListener('click', () => {
+                toastBootstrap.show();
+            });
+        }
+</script>
+    
+</body>
+</html>
